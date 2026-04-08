@@ -1,0 +1,59 @@
+using System;
+
+namespace Task7_RowsWithOddNegative
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 7. Строки с нечетными отрицательными элементами";
+            
+            int rows = 7;
+            int cols = 4;
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"Матрица {rows}x{cols}:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(-30, 30);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.WriteLine("\nСтроки, содержащие хотя бы один нечетный отрицательный элемент:");
+            bool hasOddNegative = false;
+            
+            for (int i = 0; i < rows; i++)
+            {
+                bool hasOddNeg = false;
+                for (int j = 0; j < cols; j++)
+                {
+                    if (matrix[i, j] < 0 && Math.Abs(matrix[i, j]) % 2 == 1)
+                    {
+                        hasOddNeg = true;
+                        break;
+                    }
+                }
+                
+                if (hasOddNeg)
+                {
+                    Console.Write($"Строка {i + 1} ");
+                    hasOddNegative = true;
+                }
+            }
+            
+            if (!hasOddNegative)
+            {
+                Console.WriteLine("Нет строк с нечетными отрицательными элементами");
+            }
+            Console.WriteLine();
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
