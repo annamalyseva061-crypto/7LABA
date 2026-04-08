@@ -1,0 +1,80 @@
+using System;
+
+namespace Task15_CompressArray
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 15. Сжатие массива";
+            
+            Console.Write("Введите количество строк N: ");
+            int N = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите количество столбцов M: ");
+            int M = int.Parse(Console.ReadLine());
+            
+            int[,] matrix = new int[N, M];
+            Random rnd = new Random();
+            
+            Console.WriteLine("\nИсходная матрица:");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    matrix[i, j] = rnd.Next(1, 30);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.Write("\nВведите a: ");
+            int a = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите b: ");
+            int b = int.Parse(Console.ReadLine());
+            
+            int[,] compressed = new int[N, M];
+            int newSize = N * M;
+            int[] flat = new int[newSize];
+            int index = 0;
+            
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    if (matrix[i, j] >= a && matrix[i, j] <= b)
+                    {
+                        flat[index] = 0;
+                    }
+                    else
+                    {
+                        flat[index] = matrix[i, j];
+                    }
+                    index++;
+                }
+            }
+            
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    compressed[i, j] = flat[i * M + j];
+                }
+            }
+            
+            Console.WriteLine("\nМатрица после сжатия (элементы в интервале [a,b] заменены на 0):");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    Console.Write(compressed[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
