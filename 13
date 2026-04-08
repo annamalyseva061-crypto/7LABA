@@ -1,0 +1,57 @@
+using System;
+
+namespace Task13_RowsWithEvenLimit
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 13. Строки с не более чем 3 четными";
+            
+            int rows = 8;
+            int cols = 5;
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"Матрица {rows}x{cols} (элементы 20-40):");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(20, 41);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.WriteLine("\nСтроки, содержащие не более 3 четных чисел:");
+            bool found = false;
+            
+            for (int i = 0; i < rows; i++)
+            {
+                int evenCount = 0;
+                for (int j = 0; j < cols; j++)
+                {
+                    if (matrix[i, j] % 2 == 0)
+                    {
+                        evenCount++;
+                    }
+                }
+                
+                if (evenCount <= 3)
+                {
+                    Console.WriteLine($"Строка {i + 1}: четных чисел = {evenCount}");
+                    found = true;
+                }
+            }
+            
+            if (!found)
+            {
+                Console.WriteLine("Нет строк с не более чем 3 четными числами");
+            }
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
