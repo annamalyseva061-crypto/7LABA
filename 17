@@ -1,0 +1,67 @@
+using System;
+
+namespace Task17_SwapZerosWithLastRow
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 17. Обмен нулевых элементов с последней строкой";
+            
+            Console.Write("Введите количество строк N: ");
+            int N = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите количество столбцов M: ");
+            int M = int.Parse(Console.ReadLine());
+            
+            int[,] matrix = new int[N, M];
+            Random rnd = new Random();
+            
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    matrix[i, j] = rnd.Next(0, 10);
+                }
+            }
+            
+            Console.WriteLine("\nИсходная матрица:");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            int lastRow = N - 1;
+            
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    if (matrix[i, j] == 0 && i != lastRow)
+                    {
+                        int temp = matrix[i, j];
+                        matrix[i, j] = matrix[lastRow, j];
+                        matrix[lastRow, j] = temp;
+                    }
+                }
+            }
+            
+            Console.WriteLine("\nМатрица после обмена нулевых элементов с последней строкой:");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
