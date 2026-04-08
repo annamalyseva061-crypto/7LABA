@@ -1,0 +1,55 @@
+using System;
+
+namespace Task14_MinAbsElement
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 14. Наименьший по модулю элемент";
+            
+            Console.Write("Введите количество строк N: ");
+            int N = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите количество столбцов M: ");
+            int M = int.Parse(Console.ReadLine());
+            
+            int[,] matrix = new int[N, M];
+            Random rnd = new Random();
+            
+            Console.WriteLine("\nИсходная матрица:");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    matrix[i, j] = rnd.Next(-50, 51);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            int minAbs = Math.Abs(matrix[0, 0]);
+            int minRow = 0;
+            int minCol = 0;
+            
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    if (Math.Abs(matrix[i, j]) < minAbs)
+                    {
+                        minAbs = Math.Abs(matrix[i, j]);
+                        minRow = i;
+                        minCol = j;
+                    }
+                }
+            }
+            
+            Console.WriteLine($"\nНаименьший по модулю элемент: {matrix[minRow, minCol]}");
+            Console.WriteLine($"Строка: {minRow + 1}, Столбец: {minCol + 1}");
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
