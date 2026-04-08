@@ -1,0 +1,45 @@
+using System;
+
+namespace Task3_MinInEachRow
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 3. Минимальный элемент в каждой строке";
+            
+            int rows = 15;
+            int cols = 9;
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"Матрица {rows}x{cols}:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(1, 100);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.WriteLine("\nМинимальные элементы в каждой строке:");
+            for (int i = 0; i < rows; i++)
+            {
+                int min = matrix[i, 0];
+                for (int j = 1; j < cols; j++)
+                {
+                    if (matrix[i, j] < min)
+                    {
+                        min = matrix[i, j];
+                    }
+                }
+                Console.WriteLine($"Строка {i + 1}: {min}");
+            }
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
