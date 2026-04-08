@@ -1,0 +1,50 @@
+using System;
+
+namespace Task4_SumMaxInEachColumn
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 4. Сумма максимальных в столбцах";
+            
+            int rows = 6;
+            int cols = 11;
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"Матрица {rows}x{cols}:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(1, 100);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            int totalSum = 0;
+            Console.WriteLine("\nМаксимальные элементы в каждом столбце:");
+            
+            for (int j = 0; j < cols; j++)
+            {
+                int max = matrix[0, j];
+                for (int i = 1; i < rows; i++)
+                {
+                    if (matrix[i, j] > max)
+                    {
+                        max = matrix[i, j];
+                    }
+                }
+                totalSum += max;
+                Console.WriteLine($"Столбец {j + 1}: {max}");
+            }
+            
+            Console.WriteLine($"\nСумма максимальных элементов: {totalSum}");
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
