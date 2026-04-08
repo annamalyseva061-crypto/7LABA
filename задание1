@@ -1,0 +1,55 @@
+using System;
+
+namespace Task1_CreateRandomMatrix
+{
+    internal class Program
+    {
+        static int[,] CreateRandomMatrix(int rows, int cols, int minValue, int maxValue)
+        {
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(minValue, maxValue + 1);
+                }
+            }
+            
+            return matrix;
+        }
+        
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 1. Генерация матрицы";
+            
+            Console.Write("Введите количество строк: ");
+            int rows = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите количество столбцов: ");
+            int cols = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите минимальное значение A: ");
+            int A = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите максимальное значение B: ");
+            int B = int.Parse(Console.ReadLine());
+            
+            int[,] matrix = CreateRandomMatrix(rows, cols, A, B);
+            
+            Console.WriteLine("\nСгенерированная матрица:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
