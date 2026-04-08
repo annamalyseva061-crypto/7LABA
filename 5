@@ -1,0 +1,59 @@
+using System;
+
+namespace Task5_ColumnsWithNegative
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 5. Столбцы с отрицательными элементами";
+            
+            int rows = 5;
+            int cols = 8;
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"Матрица {rows}x{cols}:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(-50, 50);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.WriteLine("\nСтолбцы, содержащие хотя бы один отрицательный элемент:");
+            bool hasNegative = false;
+            
+            for (int j = 0; j < cols; j++)
+            {
+                bool hasNeg = false;
+                for (int i = 0; i < rows; i++)
+                {
+                    if (matrix[i, j] < 0)
+                    {
+                        hasNeg = true;
+                        break;
+                    }
+                }
+                
+                if (hasNeg)
+                {
+                    Console.Write(j + 1 + " ");
+                    hasNegative = true;
+                }
+            }
+            
+            if (!hasNegative)
+            {
+                Console.WriteLine("Нет столбцов с отрицательными элементами");
+            }
+            Console.WriteLine();
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
