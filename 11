@@ -1,0 +1,67 @@
+using System;
+
+namespace Task11_MaxSumRowRectangle
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 11. Строка с максимальной суммой (прямоугольная)";
+            
+            Console.Write("Введите количество строк N: ");
+            int N = int.Parse(Console.ReadLine());
+            
+            Console.Write("Введите количество столбцов M: ");
+            int M = int.Parse(Console.ReadLine());
+            
+            int[,] matrix = new int[N, M];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"\nМатрица {N}x{M}:");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    matrix[i, j] = rnd.Next(1, 50);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            int maxSum = 0;
+            int maxRow = 0;
+            int[] maxRowArray = new int[M];
+            
+            for (int i = 0; i < N; i++)
+            {
+                int sum = 0;
+                for (int j = 0; j < M; j++)
+                {
+                    sum += matrix[i, j];
+                }
+                
+                if (sum > maxSum)
+                {
+                    maxSum = sum;
+                    maxRow = i;
+                    
+                    for (int j = 0; j < M; j++)
+                    {
+                        maxRowArray[j] = matrix[i, j];
+                    }
+                }
+            }
+            
+            Console.WriteLine($"\nСтрока с максимальной суммой ({maxSum}): строка {maxRow + 1}");
+            Console.WriteLine("Одномерный массив из этой строки:");
+            for (int i = 0; i < M; i++)
+            {
+                Console.Write(maxRowArray[i] + " ");
+            }
+            Console.WriteLine();
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
