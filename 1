@@ -1,0 +1,66 @@
+using System;
+
+namespace MatrixExamples
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = " Примеры работы с матрицами";
+            
+            // Задача 1: 
+            Console.WriteLine("=== Задача 1: Вывод матрицы ===");
+            int[,] matrix = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12}
+            };
+            
+            Console.WriteLine("Матрица 3x4:");
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            // Задача 2: 
+            Console.WriteLine("\n=== Задача 2: Главная диагональ ===");
+            int[,] squareMatrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+            };
+            
+            Console.WriteLine("Квадратная матрица 3x3:");
+            for (int i = 0; i < squareMatrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < squareMatrix.GetLength(1); j++)
+                {
+                    Console.Write(squareMatrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            int size = squareMatrix.GetLength(0);
+            int[] diagonal = new int[size];
+            
+            for (int i = 0; i < size; i++)
+            {
+                diagonal[i] = squareMatrix[i, i];
+            }
+            
+            Console.WriteLine("\nЭлементы главной диагонали:");
+            for (int i = 0; i < diagonal.Length; i++)
+            {
+                Console.Write(diagonal[i] + " ");
+            }
+            Console.WriteLine();
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
