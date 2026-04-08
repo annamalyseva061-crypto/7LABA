@@ -1,0 +1,64 @@
+using System;
+
+namespace Task10_MaxSumRowSquare
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 10. Строка с максимальной суммой (квадратная)";
+            
+            Console.Write("Введите размер матрицы N: ");
+            int N = int.Parse(Console.ReadLine());
+            
+            int[,] matrix = new int[N, N];
+            Random rnd = new Random();
+            
+            Console.WriteLine("\nИсходная матрица:");
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    matrix[i, j] = rnd.Next(1, 50);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            int maxSum = 0;
+            int maxRow = 0;
+            int[] maxRowArray = new int[N];
+            
+            for (int i = 0; i < N; i++)
+            {
+                int sum = 0;
+                for (int j = 0; j < N; j++)
+                {
+                    sum += matrix[i, j];
+                }
+                
+                if (sum > maxSum)
+                {
+                    maxSum = sum;
+                    maxRow = i;
+                    
+                    for (int j = 0; j < N; j++)
+                    {
+                        maxRowArray[j] = matrix[i, j];
+                    }
+                }
+            }
+            
+            Console.WriteLine($"\nСтрока с максимальной суммой ({maxSum}): строка {maxRow + 1}");
+            Console.WriteLine("Одномерный массив из этой строки:");
+            for (int i = 0; i < N; i++)
+            {
+                Console.Write(maxRowArray[i] + " ");
+            }
+            Console.WriteLine();
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
