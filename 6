@@ -1,0 +1,59 @@
+using System;
+
+namespace Task6_RowsWithPositive
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 6. Строки с положительными элементами";
+            
+            int rows = 5;
+            int cols = 10;
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"Матрица {rows}x{cols}:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(-20, 30);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            Console.WriteLine("\nСтроки, содержащие только положительные элементы:");
+            bool hasAllPositive = false;
+            
+            for (int i = 0; i < rows; i++)
+            {
+                bool allPositive = true;
+                for (int j = 0; j < cols; j++)
+                {
+                    if (matrix[i, j] <= 0)
+                    {
+                        allPositive = false;
+                        break;
+                    }
+                }
+                
+                if (allPositive)
+                {
+                    Console.Write($"Строка {i + 1} ");
+                    hasAllPositive = true;
+                }
+            }
+            
+            if (!hasAllPositive)
+            {
+                Console.WriteLine("Нет строк, содержащих только положительные элементы");
+            }
+            Console.WriteLine();
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
