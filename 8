@@ -1,0 +1,55 @@
+using System;
+
+namespace Task8_RowSums
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Title = "Задание 8. Сумма элементов каждой строки";
+            
+            int rows = 4;
+            int cols = 6;
+            int[,] matrix = new int[rows, cols];
+            Random rnd = new Random();
+            
+            Console.WriteLine($"Матрица {rows}x{cols}:");
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    matrix[i, j] = rnd.Next(1, 50);
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+            
+            int[] rowSums = new int[rows];
+            int maxSum = 0;
+            int maxRow = 0;
+            
+            Console.WriteLine("\nСуммы элементов по строкам:");
+            for (int i = 0; i < rows; i++)
+            {
+                int sum = 0;
+                for (int j = 0; j < cols; j++)
+                {
+                    sum += matrix[i, j];
+                }
+                rowSums[i] = sum;
+                Console.WriteLine($"Строка {i + 1}: {sum}");
+                
+                if (sum > maxSum)
+                {
+                    maxSum = sum;
+                    maxRow = i;
+                }
+            }
+            
+            Console.WriteLine($"\nМаксимальная сумма: {maxSum} (строка {maxRow + 1})");
+            
+            Console.Write("\nНажми любую клавишу...");
+            Console.ReadKey();
+        }
+    }
+}
